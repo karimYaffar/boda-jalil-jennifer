@@ -1,34 +1,77 @@
+
 <!doctype html>
 <html lang="es">
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Jalil & Jennifer | Nuestra Boda</title>
-  </head>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#101A12">
 
-  <body class="min-h-screen bg-black text-white flex items-center justify-center">
-    <main class="text-center px-6">
-      <p class="mb-4 text-sm tracking-[0.4em] uppercase text-amber-200">
-        Nuestra boda
-      </p>
+  <title>Jalil & Jennifer | Nuestra Boda</title>
 
-      <h1 class="text-6xl md:text-8xl font-serif text-amber-100">
-        Jalil & Jennifer
-      </h1>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:wght@400;500;600&display=swap"
+    rel="stylesheet"
+  >
+</head>
 
-      <p class="mt-6 text-xl tracking-widest uppercase text-white/80">
-        05 de diciembre de 2026
-      </p>
+<body class="index-video-page min-h-screen text-white flex items-center justify-center">
 
-      <a
-  href="/main.html"
-  id="open-invitation"
-  class="inline-block mt-10 rounded-full border border-amber-200 px-8 py-3 text-amber-100 hover:bg-amber-200 hover:text-black transition"
->
-  Abrir invitación
-</a>
-    </main>
+  <!-- VIDEO DE FONDO -->
+  <div class="index-video-background" aria-hidden="true">
 
-    <script type="module" src="/src/main.js"></script>
-  </body>
+    <video
+      class="index-background-video"
+      autoplay
+      muted
+      loop
+      playsinline
+      preload="auto"
+    >
+      <source
+        src="/videos/nuestro-save-the-date.mp4"
+        type="video/mp4"
+      >
+    </video>
+
+    <!-- OSCURECIMIENTO VERDE OLIVA -->
+    <div class="index-video-overlay"></div>
+
+  </div>
+
+  <!-- CONTENIDO DE LA PORTADA -->
+  <main class="index-cover-content relative z-10 px-6 text-center">
+
+    <p class="mb-4 text-sm uppercase tracking-[0.4em] text-[#CFCAAD]">
+      Nuestra boda
+    </p>
+
+    <h1 class="font-serif text-6xl font-semibold text-[#F5EFDA] md:text-8xl">
+      Jalil & Jennifer
+    </h1>
+
+    <div class="mx-auto mt-6 flex items-center justify-center gap-4">
+      <span class="h-px w-16 bg-[#9D9E76]"></span>
+      <span class="text-[#DAD6BA]">✦</span>
+      <span class="h-px w-16 bg-[#9D9E76]"></span>
+    </div>
+
+    <p class="mt-6 text-lg uppercase tracking-[0.2em] text-[#E4DCC5] md:text-xl">
+      05 de diciembre de 2026
+    </p>
+
+    <a
+      href="/main.html"
+      id="open-invitation"
+      class="mt-10 inline-block rounded-full border border-[#C0BC97] bg-[#101A12]/35 px-8 py-3 text-[#F5EFDA] backdrop-blur-sm transition duration-300 hover:bg-[#E4DCC5] hover:text-[#101A12]"
+    >
+      Abrir invitación
+    </a>
+
+  </main>
+
+  <script type="module" src="/src/main.js"></script>
+
+</body>
 </html>

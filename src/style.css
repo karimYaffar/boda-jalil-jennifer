@@ -1367,3 +1367,67 @@ html {
 }
 
 
+
+/* ==========================================
+   PORTADA - VIDEO DE FONDO EN BUCLE
+   ========================================== */
+
+body.index-video-page {
+  position: relative;
+  min-height: 100vh;
+  min-height: 100dvh;
+  isolation: isolate;
+  background: #101A12;
+}
+
+/* Contenedor de video */
+.index-video-background {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  overflow: hidden;
+  pointer-events: none;
+  background: #101A12;
+}
+
+/* Video ocupando toda la pantalla */
+.index-background-video {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+  object-position: center;
+}
+
+/* Oscurecimiento */
+.index-video-overlay {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(
+      180deg,
+      rgba(16, 26, 18, 0.58) 0%,
+      rgba(16, 26, 18, 0.48) 45%,
+      rgba(16, 26, 18, 0.75) 100%
+    );
+}
+
+/* Contenido visible por encima del video */
+body.index-video-page > :not(.index-video-background) {
+  position: relative;
+  z-index: 1;
+}
+
+/* Adaptación a teléfonos */
+@media (max-width: 600px) {
+  .index-background-video {
+    object-position: center center;
+  }
+
+  .index-video-overlay {
+    background: rgba(16, 26, 18, 0.58);
+  }
+}
+
+
+
