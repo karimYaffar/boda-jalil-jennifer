@@ -94,7 +94,7 @@
 
         <form id="rsvp-form">
           <div class="rsvp-field">
-            <label for="guest-name">Nombre completo del invitado principal *</label>
+            <label for="guest-name">Nombre completo del invitado o familia *</label>
             <input
               id="guest-name"
               name="nombre"
@@ -143,42 +143,38 @@
           </fieldset>
 
           
+
 <!-- ACOMPAÑANTES -->
 <div id="attending-fields" class="rsvp-dynamic">
 
   <div class="rsvp-separator">✦</div>
 
   <div class="rsvp-field">
-    
-<label for="companion-quantity">
-  Además de ti, ¿cuántos acompañantes asistirán?
-</label>
+    <label for="companion-quantity">
+      ¿Cuántos de tus pases asignados utilizarás?
+    </label>
 
-<p class="rsvp-companion-help">
-  Si asistirás solo(a), selecciona 0.
-  Puedes registrar hasta 6 acompañantes,
-  sin exceder los pases que te fueron asignados.
-</p>
-
+    <p class="rsvp-companion-help">
+      Selecciona cuántas personas asistirán contigo.
+      Si asistirás solo(a), selecciona 0 acompañantes.
+      El máximo es de 6 personas en total, incluyéndote.
+    </p>
 
     <select
       id="companion-quantity"
       name="cantidad_acompanantes"
       class="rsvp-companion-select"
     >
-      <option value="0">Ninguno, asistiré solo(a)</option>
-      <option value="1">1 acompañante</option>
-      <option value="2">2 acompañantes</option>
-      <option value="3">3 acompañantes</option>
-      <option value="4">4 acompañantes</option>
-      <option value="5">5 acompañantes</option>
-      <option value="6">6 acompañantes</option>
+      <option value="0">Solo yo — 1 pase</option>
+      <option value="1">Yo y 1 acompañante — 2 pases</option>
+      <option value="2">Yo y 2 acompañantes — 3 pases</option>
+      <option value="3">Yo y 3 acompañantes — 4 pases</option>
+      <option value="4">Yo y 4 acompañantes — 5 pases</option>
+      <option value="5">Yo y 5 acompañantes — 6 pases</option>
     </select>
   </div>
 
-  <div id="companion-fields" class="rsvp-companion-fields">
-    <!-- JavaScript generará los campos necesarios -->
-  </div>
+  <div id="companion-fields" class="rsvp-companion-fields"></div>
 
   <div class="rsvp-guest-summary">
     <span>Total de personas que asistirán</span>
@@ -186,6 +182,7 @@
   </div>
 
 </div>
+
 
 
           <div id="not-attending-fields" class="rsvp-dynamic" hidden>
