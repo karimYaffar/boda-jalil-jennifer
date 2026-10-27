@@ -519,3 +519,73 @@
     transition-duration: 0.01ms !important;
   }
 }
+
+
+.rsvp-companion-help {
+  margin: 8px 0 12px;
+  color: #787646;
+  font-size: 0.78rem;
+  line-height: 1.6;
+}
+
+/* ACOMPAÑANTES - ESTILO OLIVA Y MARFIL */
+
+.rsvp-companion-select {
+  display: block;
+  width: 100%;
+  min-height: 52px;
+  margin-top: 10px;
+  padding: 12px 16px;
+  border: 1px solid #C0BC97;
+  border-radius: 10px;
+  background: #FFFCF3;
+  color: #303A2C;
+  font-family: "Montserrat", sans-serif;
+  font-size: 0.9rem;
+}
+
+.rsvp-companion-select:focus {
+  outline: 2px solid #787646;
+  outline-offset: 2px;
+}
+
+.rsvp-companion-fields {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+  margin: 22px 0;
+}
+
+.rsvp-companion-fields .rsvp-field {
+  margin: 0;
+  min-width: 0;
+}
+
+.rsvp-guest-summary {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  margin: 20px 0 28px;
+  padding: 18px;
+  border: 1px solid #9D9E76;
+  border-radius: 12px;
+  background: #E7E9D9;
+  color: #4C5129;
+  font-size: 0.9rem;
+}
+
+.rsvp-guest-summary strong {
+  font-family: "Cormorant Garamond", serif;
+  font-size: 2rem;
+}
+
+@media (max-width: 600px) {
+  .rsvp-companion-fields {
+    grid-template-columns: 1fr;
+  }
+}
+
+
+
+

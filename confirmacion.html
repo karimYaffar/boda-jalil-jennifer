@@ -62,8 +62,8 @@
 
       <p class="rsvp-introduction">
         Nos llena de ilusión compartir este día tan especial contigo.
-        Por ello la invitación es personal y no contempla acompañantes adicionales.
-        Ayúdanos a preparar cada detalle confirmando tu asistencia. 
+        Para ayudarnos a preparar cada detalle, te invitamos a confirmar
+        tu asistencia e indicar cuántos de tus pases asignados utilizarás.
         
       </p>
 
@@ -143,6 +143,50 @@
           </fieldset>
 
           
+<!-- ACOMPAÑANTES -->
+<div id="attending-fields" class="rsvp-dynamic">
+
+  <div class="rsvp-separator">✦</div>
+
+  <div class="rsvp-field">
+    
+<label for="companion-quantity">
+  Además de ti, ¿cuántos acompañantes asistirán?
+</label>
+
+<p class="rsvp-companion-help">
+  Si asistirás solo(a), selecciona 0.
+  Puedes registrar hasta 6 acompañantes,
+  sin exceder los pases que te fueron asignados.
+</p>
+
+
+    <select
+      id="companion-quantity"
+      name="cantidad_acompanantes"
+      class="rsvp-companion-select"
+    >
+      <option value="0">Ninguno, asistiré solo(a)</option>
+      <option value="1">1 acompañante</option>
+      <option value="2">2 acompañantes</option>
+      <option value="3">3 acompañantes</option>
+      <option value="4">4 acompañantes</option>
+      <option value="5">5 acompañantes</option>
+      <option value="6">6 acompañantes</option>
+    </select>
+  </div>
+
+  <div id="companion-fields" class="rsvp-companion-fields">
+    <!-- JavaScript generará los campos necesarios -->
+  </div>
+
+  <div class="rsvp-guest-summary">
+    <span>Total de personas que asistirán</span>
+    <strong id="guest-total">1</strong>
+  </div>
+
+</div>
+
 
           <div id="not-attending-fields" class="rsvp-dynamic" hidden>
             <div class="rsvp-separator">✦</div>
