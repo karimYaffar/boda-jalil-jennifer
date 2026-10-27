@@ -137,3 +137,119 @@ if (weddingVideo && videoPlayButton && videoCover) {
   })
 }
 
+
+// ========================================
+// MÚSICA DE FONDO - PORTADA E INVITACIÓN
+// ========================================
+
+const music = document.getElementById('wedding-background-music')
+const musicButton = document.getElementById('wedding-music-toggle')
+const musicIcon = document.getElementById('wedding-music-icon')
+const musicLabel = document.getElementById('wedding-music-label')
+const openInvitation = document.getElementById('open-invitation')
+
+if (music && musicButton) {
+  music.volume = 0.3
+
+  let resumeAfterVideo = false
+
+  function updateMusicUI() {
+    const playing = !music.paused
+
+    musicButton.classList.toggle('is-playing', playing)
+    musicButton.setAttribute('aria-pressed', String(playing))
+    musicButton.setAttribute(
+      'aria-label',
+      playing ? 'Pausar música' : 'Reproducir música'
+    )
+
+    if (musicIcon) {
+      musicIcon.textContent = playing ? 'Ⅱ' : '♫'
+    }
+
+    if (musicLabel) {
+      musicLabel.textContent = playing
+        ? 'Pausar música'
+        : 'Activar música'
+    }
+  }
+
+  // Activación manual desde el botón
+  musicButton.addEventListener('click', async () => {
+    if (!music.paused) {
+      music.pause()
+      return
+    }
+
+    try {
+      await music.play()
+    } catch (error) {
+      console.warn('No se pudo reproducir música:', error)
+    }
+  })
+
+  // Guardar el estado al abrir la invitación
+  openInvitation?.addEventListener('click', () => {
+    sessionStorage.setItem(
+      'wedding-music-playing',
+      String(!music.paused)
+    )
+
+    sessionStorage.setItem(
+      'wedding-music-time',
+      String(music.currentTime)
+    )
+  })
+
+  // Recuperar estado de la música en main.html
+  if (!openInvitation) {
+    const shouldPlay =
+      sessionStorage.getItem('wedding-music-playing') === 'true'
+
+    const lastTime = Number(
+      sessionStorage.getItem('wedding-music-time') || 0
+    )
+
+    if (Number.isFinite(lastTime) && lastTime >= 0) {
+      music.currentTime = lastTime
+    }
+
+    if (shouldPlay) {
+      music.play().catch(() => {
+        // El navegador puede exigir otra interacción.
+        updateMusicUI()
+      })
+    }
+  }
+
+  // Evitar mezclar audio del video con música de fondo
+  if (weddingVideo) {
+    weddingVideo.addEventListener('play', () => {
+      resumeAfterVideo = !music.paused
+
+      if (resumeAfterVideo) {
+        music.pause()
+      }
+    })
+
+    const resumeMusic = async () => {
+      if (!resumeAfterVideo) return
+
+      resumeAfterVideo = false
+
+      try {
+        await music.play()
+      } catch (error) {
+        console.warn('Se necesita interacción para reanudar música.', error)
+      }
+    }
+
+    weddingVideo.addEventListener('pause', resumeMusic)
+    weddingVideo.addEventListener('ended', resumeMusic)
+  }
+
+  music.addEventListener('play', updateMusicUI)
+  music.addEventListener('pause', updateMusicUI)
+
+  updateMusicUI()
+}

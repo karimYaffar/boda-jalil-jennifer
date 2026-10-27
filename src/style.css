@@ -1433,3 +1433,61 @@ body.index-video-page > :not(.index-video-background) {
 
 
 
+/* MÚSICA FLOTANTE EN LA PORTADA */
+
+.wedding-music-player {
+  position: fixed !important;
+  right: 20px;
+  bottom: 22px;
+  z-index: 1000 !important;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.wedding-music-button {
+  display: flex;
+  width: 54px;
+  height: 54px;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #C0BC97;
+  border-radius: 50%;
+  background: rgba(16, 26, 18, 0.92);
+  color: #F5EFDA;
+  font-size: 25px;
+  cursor: pointer;
+  backdrop-filter: blur(10px);
+}
+
+.wedding-music-button.is-playing {
+  background: #4C5129;
+  border-color: #E4DCC5;
+}
+
+.wedding-music-tooltip {
+  padding: 8px 12px;
+  border-radius: 25px;
+  background: rgba(16, 26, 18, 0.9);
+  color: #F5EFDA;
+  font-size: 12px;
+}
+
+@media (max-width: 600px) {
+  .wedding-music-player {
+    right: 14px;
+    bottom: 16px;
+  }
+
+  .wedding-music-button {
+    width: 48px;
+    height: 48px;
+  }
+
+  .wedding-music-tooltip {
+    display: none;
+  }
+}
+
+
+
