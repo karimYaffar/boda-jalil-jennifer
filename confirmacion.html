@@ -1,0 +1,195 @@
+
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#031f18" />
+  <title>Confirmar asistencia | Jalil & Jennifer</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+
+<body class="rsvp-page">
+  <header class="rsvp-header">
+    <a href="/main.html" class="rsvp-back">
+      ← Volver a la invitación
+    </a>
+    <a href="/main.html" class="rsvp-brand">J <span>&</span> J</a>
+    <span class="rsvp-header-date">05 · XII · 2026</span>
+  </header>
+
+ 
+<main class="rsvp-main">
+
+  <!-- CABECERA FOTOGRÁFICA -->
+  <section class="rsvp-hero" aria-labelledby="rsvp-title">
+
+    <!-- Imagen de fondo -->
+    <div class="rsvp-hero-photo" aria-hidden="true"></div>
+
+    <!-- Oscurecimiento -->
+    <div class="rsvp-hero-overlay" aria-hidden="true"></div>
+
+    <!-- Contenido del encabezado -->
+    <div class="rsvp-hero-content">
+
+      <div class="rsvp-hero-monogram">
+        <img
+          src="/img/Monograma_jj.png"
+          alt=""
+        />
+      </div>
+
+      <p class="rsvp-eyebrow">
+        Nuestra boda
+      </p>
+
+      <h1 id="rsvp-title" class="rsvp-title">
+        Confirma tu asistencia
+      </h1>
+
+      <div class="rsvp-ornament">
+        <span>✦</span>
+      </div>
+
+      <p class="rsvp-introduction">
+        Nos llena de ilusión compartir este día tan especial contigo.
+        Ayúdanos a preparar cada detalle confirmando tu asistencia.
+      </p>
+
+      <p class="rsvp-hero-date">
+        05 · DICIEMBRE · 2026
+      </p>
+
+    </div>
+
+  </section>
+
+  <!-- FORMULARIO SUPERPUESTO -->
+  <div class="rsvp-form-container">
+
+    <section class="rsvp-paper">
+
+      <div class="paper-corner corner-tl"></div>
+      <div class="paper-corner corner-tr"></div>
+      <div class="paper-corner corner-bl"></div>
+      <div class="paper-corner corner-br"></div>
+
+      <div class="rsvp-paper-inner">
+        <p class="rsvp-form-eyebrow">Jalil & Jennifer</p>
+        <h2>Tu presencia es nuestro regalo</h2>
+        <p class="rsvp-form-subtitle">
+          Por favor, completa los siguientes datos.
+        </p>
+
+        <form id="rsvp-form">
+          <div class="rsvp-field">
+            <label for="guest-name">Nombre completo del invitado principal *</label>
+            <input
+              id="guest-name"
+              name="nombre"
+              type="text"
+              maxlength="120"
+              autocomplete="name"
+              placeholder="Escribe tu nombre completo"
+              required
+            />
+          </div>
+
+          <div class="rsvp-field">
+            <label for="guest-phone">Número de teléfono (opcional)</label>
+            <input
+              id="guest-phone"
+              name="telefono"
+              type="tel"
+              maxlength="25"
+              autocomplete="tel"
+              placeholder="Para contactarte si es necesario"
+            />
+          </div>
+
+          <fieldset class="rsvp-field">
+            <legend>¿Nos acompañarás en nuestro gran día? *</legend>
+
+            <div class="rsvp-choice-grid">
+              <label class="rsvp-choice">
+                <input type="radio" name="asistencia" value="si" checked />
+                <span class="rsvp-choice-content">
+                  <span class="choice-symbol">✦</span>
+                  <strong>¡Sí, asistiré!</strong>
+                  <small>Será un honor acompañarlos</small>
+                </span>
+              </label>
+
+              <label class="rsvp-choice">
+                <input type="radio" name="asistencia" value="no" />
+                <span class="rsvp-choice-content">
+                  <span class="choice-symbol">♡</span>
+                  <strong>No podré asistir</strong>
+                  <small>Pero les deseo toda la felicidad</small>
+                </span>
+              </label>
+            </div>
+          </fieldset>
+
+          
+
+          <div id="not-attending-fields" class="rsvp-dynamic" hidden>
+            <div class="rsvp-separator">✦</div>
+
+            <p class="decline-message">
+              Aunque esta vez no podamos celebrar juntos, agradecemos de
+              corazón tus buenos deseos.
+            </p>
+          </div>
+
+          <div class="rsvp-field">
+            <label for="guest-message">
+              Un mensaje para los novios (opcional)
+            </label>
+            <textarea
+              id="guest-message"
+              name="mensaje"
+              rows="4"
+              maxlength="1000"
+              placeholder="Escríbeles unas palabras especiales..."
+            ></textarea>
+          </div>
+
+          <p class="rsvp-privacy-note">
+            Utilizaremos tus datos únicamente para organizar nuestra boda
+            y gestionar la lista de invitados.
+          </p>
+
+          <button type="submit" id="submit-rsvp" class="rsvp-submit">
+            <span>✦</span>
+            <span id="submit-label">Confirmar mi asistencia</span>
+            <span>✦</span>
+          </button>
+
+          <p id="form-feedback" class="rsvp-feedback" role="status" aria-live="polite"></p>
+        </form>
+      </div>
+    </section>
+    </div>
+    <section id="rsvp-success" class="rsvp-success" hidden tabindex="-1">
+      <div class="success-seal">✓</div>
+      <h2 id="success-title">¡Muchas gracias!</h2>
+      <p id="success-message">
+        Hemos recibido tu respuesta.
+      </p>
+      <a href="/main.html">Volver a nuestra invitación</a>
+    </section>
+
+    <footer class="rsvp-footer">
+      <p>Jalil & Jennifer</p>
+      <span>05 de diciembre de 2026</span>
+    </footer>
+  </main>
+
+  <script type="module" src="/src/confirmacion.js"></script>
+</body>
+</html>
