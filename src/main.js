@@ -88,8 +88,15 @@ openInvitationButton?.addEventListener('click', (event) => {
   }, 700)
 })
 
-updateCountdown()
-setInterval(updateCountdown, 1000)
+if (
+  daysElement &&
+  hoursElement &&
+  minutesElement &&
+  secondsElement
+) {
+  updateCountdown()
+  setInterval(updateCountdown, 1000)
+}
 
 
 // Historia interactiva
@@ -148,7 +155,7 @@ const musicIcon = document.getElementById('wedding-music-icon')
 const musicLabel = document.getElementById('wedding-music-label')
 const openInvitation = document.getElementById('open-invitation')
 
-if (music && musicButton) {
+if (music) {
   music.volume = 0.3
 
   let resumeAfterVideo = false
@@ -156,16 +163,16 @@ if (music && musicButton) {
   function updateMusicUI() {
     const playing = !music.paused
 
-    musicButton.classList.toggle('is-playing', playing)
-    musicButton.setAttribute('aria-pressed', String(playing))
-    musicButton.setAttribute(
-      'aria-label',
-      playing ? 'Pausar música' : 'Reproducir música'
-    )
-
-    if (musicIcon) {
-      musicIcon.textContent = playing ? 'Ⅱ' : '♫'
+    if (musicButton) {
+      musicButton.classList.toggle('is-playing', playing)
+      musicButton.setAttribute('aria-pressed', String(playing))
+      musicButton.setAttribute(
+        'aria-label',
+        playing ? 'Pausar música' : 'Reproducir música'
+      )
     }
+
+    if (musicIcon) musicIcon.textContent = playing ? 'Ⅱ' : '♫'
 
     if (musicLabel) {
       musicLabel.textContent = playing
@@ -174,21 +181,48 @@ if (music && musicButton) {
     }
   }
 
-  // Activación manual desde el botón
-  musicButton.addEventListener('click', async () => {
-    if (!music.paused) {
-      music.pause()
-      return
-    }
+  async function playMusic() {
+    if (!music.paused) return true
 
     try {
       await music.play()
+      return true
     } catch (error) {
-      console.warn('No se pudo reproducir música:', error)
+      // Algunos navegadores bloquean el sonido automático.
+      console.info('La música requiere interacción.', error.name)
+      return false
+    }
+  }
+
+  // Intentar reproducir automáticamente al entrar.
+  playMusic()
+
+  // Si se bloqueó, usar la primera interacción real
+  // del usuario para activar la música.
+  const activateOnInteraction = () => {
+    playMusic()
+  }
+
+  document.addEventListener('pointerdown', activateOnInteraction, {
+    once: true,
+    capture: true
+  })
+
+  document.addEventListener('keydown', activateOnInteraction, {
+    once: true,
+    capture: true
+  })
+
+  // Botón para pausar o reanudar voluntariamente
+  musicButton?.addEventListener('click', async () => {
+    if (!music.paused) {
+      music.pause()
+    } else {
+      await playMusic()
     }
   })
 
-  // Guardar el estado al abrir la invitación
+  // Guardar información al pasar de index.html a main.html
   openInvitation?.addEventListener('click', () => {
     sessionStorage.setItem(
       'wedding-music-playing',
@@ -201,47 +235,34 @@ if (music && musicButton) {
     )
   })
 
-  // Recuperar estado de la música en main.html
+  // Recuperar la posición de la música en main.html
   if (!openInvitation) {
-    const shouldPlay =
-      sessionStorage.getItem('wedding-music-playing') === 'true'
-
-    const lastTime = Number(
+    const savedTime = Number(
       sessionStorage.getItem('wedding-music-time') || 0
     )
 
-    if (Number.isFinite(lastTime) && lastTime >= 0) {
-      music.currentTime = lastTime
-    }
-
-    if (shouldPlay) {
-      music.play().catch(() => {
-        // El navegador puede exigir otra interacción.
-        updateMusicUI()
-      })
+    if (Number.isFinite(savedTime) && savedTime > 0) {
+      music.addEventListener('loadedmetadata', () => {
+        if (Number.isFinite(music.duration) && music.duration > 0) {
+          music.currentTime = savedTime % music.duration
+        }
+      }, { once: true })
     }
   }
 
-  // Evitar mezclar audio del video con música de fondo
+  // Pausar la música cuando se reproduce el video principal
   if (weddingVideo) {
     weddingVideo.addEventListener('play', () => {
       resumeAfterVideo = !music.paused
 
-      if (resumeAfterVideo) {
-        music.pause()
-      }
+      if (resumeAfterVideo) music.pause()
     })
 
-    const resumeMusic = async () => {
+    const resumeMusic = () => {
       if (!resumeAfterVideo) return
 
       resumeAfterVideo = false
-
-      try {
-        await music.play()
-      } catch (error) {
-        console.warn('Se necesita interacción para reanudar música.', error)
-      }
+      playMusic()
     }
 
     weddingVideo.addEventListener('pause', resumeMusic)
