@@ -519,10 +519,11 @@ html {
   width: 100%;
 }
 
-/* Párrafos de la historia */
+/* Párrafos narrativos justificados en todos los tamaños */
 .story-reading .story-panel > p:not(.story-kicker) {
   text-align: justify;
-  text-indent: 2rem;
+  text-justify: inter-word;
+  text-indent: 1.5rem;
   line-height: 1.9;
   letter-spacing: 0.01em;
   hyphens: auto;
@@ -547,13 +548,14 @@ html {
   text-indent: 0;
 }
 
-/* Ajustes para celulares */
+/* Justificación también en celulares, con menor sangría */
 @media (max-width: 768px) {
   .story-reading .story-panel > p:not(.story-kicker) {
-    text-align: left;
-    text-indent: 1.25rem;
+    text-align: justify;
+    text-justify: inter-word;
+    text-indent: 1rem;
     line-height: 1.8;
-    hyphens: none;
+    hyphens: auto;
   }
 }
 
